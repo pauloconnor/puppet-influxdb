@@ -49,6 +49,7 @@ class influxdb::params {
   $leveldb_max_open_shards              = '0'
   $leveldb_point_batch_size             = '100'
   $leveldb_point_write_size             = '5000000'
+  $leveldb_write_batch_size             = '5000000'
 
   # [sharding]
 
