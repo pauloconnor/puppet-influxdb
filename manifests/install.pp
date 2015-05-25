@@ -6,19 +6,24 @@ class influxdb::install {
   }
   if !$influxdb::install_from_repository {
     # package source and provider
+    if $influxdb::install_dev {
+      $package_source = "http://get.influxdb.org/influxdb_0.9.0-rc31_amd64.deb"
+    } else {
+      $package_source = "http://s3.amazonaws.com/influxdb/influxdb"
+    }
     case $::osfamily {
       'Debian': {
         $package_provider = 'dpkg'
         $package_source = $::architecture ? {
-          /64/    => "http://s3.amazonaws.com/influxdb/influxdb_${influxdb::version}_amd64.deb",
-          default => "http://s3.amazonaws.com/influxdb/influxdb_${influxdb::version}_i386.deb",
+          /64/    => "${package_source}_${influxdb::version}_amd64.deb",
+          default => "${package_source}_${influxdb::version}_i386.deb",
         }
       }
       'RedHat', 'Amazon': {
         $package_provider = 'rpm'
         $package_source = $::architecture ? {
-          /64/    => "http://s3.amazonaws.com/influxdb/influxdb-${influxdb::version}-1.x86_64.rpm",
-          default => "http://s3.amazonaws.com/influxdb/influxdb-${influxdb::version}-1.i686.rpm",
+          /64/    => "${package_source}-${influxdb::version}-1.x86_64.rpm",
+          default => "${package_source}-${influxdb::version}-1.i686.rpm",
         }
       }
       default: {
