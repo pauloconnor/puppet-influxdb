@@ -6,11 +6,7 @@ class influxdb::install {
   }
   if !$influxdb::install_from_repository {
     # package source and provider
-    if $influxdb::install_dev {
-      $package_source_prefix = "http://get.influxdb.org/influxdb_0.9.0-rc31_amd64.deb"
-    } else {
-      $package_source_prefix = "http://s3.amazonaws.com/influxdb/influxdb"
-    }
+    $package_source_prefix = "http://s3.amazonaws.com/influxdb/influxdb"
     case $::osfamily {
       'Debian': {
         $package_provider = 'dpkg'

@@ -2,7 +2,7 @@
 # DO NOT CALL DIRECTLY
 class influxdb::params {
   $ensure                               = 'installed'
-  $version                              = 'latest'
+  $version                              = '0.9.6.1'
   $install_from_repository              = false
   $install_dev                          = false
   $config_path                          = '/opt/influxdb/shared/config.toml'

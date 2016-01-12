@@ -14,7 +14,7 @@ describe 'influxdb::install' do
       }
 
       it { should contain_staging__file('influxdb-package').with(
-        :source => 'http://s3.amazonaws.com/influxdb/influxdb_latest_amd64.deb',
+        :source => 'http://s3.amazonaws.com/influxdb/influxdb_0.9.6.1_amd64.deb',
       )}
 
       it { should contain_package('influxdb').with(
@@ -33,7 +33,7 @@ describe 'influxdb::install' do
       }
 
       it { should contain_staging__file('influxdb-package').with(
-        :source => 'http://s3.amazonaws.com/influxdb/influxdb-latest-1.x86_64.rpm',
+        :source => 'http://s3.amazonaws.com/influxdb/influxdb-0.9.6.1-1.x86_64.rpm',
       )}
 
       it { should contain_package('influxdb').with(
